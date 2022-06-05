@@ -40,12 +40,21 @@ let
     };
   };
 
+  vim-term = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-term";
+    src = pkgs.fetchFromGitHub {
+      owner = "akinsho";
+      repo = "toggleterm.nvim";
+      rev = "5bf839a558bf313fdbbe44824bcf3c4fe60502d0";
+      sha256="JSftVs4OhmaN2tLoIPLEGCX3/tLjRa6usS6JBKUPNwU=";
+    };
+  };
+
 in {
   packageOverrides = pkgs: with pkgs; {
     hnvim = neovim.override {
       configure = {
         customRC = ''
-
           set number 
           set tabstop=8
 	  set softtabstop=0 
@@ -54,15 +63,24 @@ in {
           set smarttab
           set colorcolumn=80
 
+          " Map leader to Space 
+          let mapleader = " " 
+
+          " Windows 
           nnoremap <C-j> <C-w>j
           nnoremap <C-k> <C-w>k
           nnoremap <C-l> <C-w>l
           nnoremap <C-h> <C-w>h
+          nnoremap <Leader>wv <C-w>v
+          nnoremap <Leader>ws <C-w>s
 
-          let mapleader = " " " map leader to Space
+          " Buffers
+          nnoremap <Leader>bn :bn<CR>
+          nnoremap <Leader>bp :bp<CR>
+          nnoremap <Leader>bd :bd<CR>
 
           " Nerd Tree
-          nnoremap <leader>n :NERDTreeFocus<CR>
+          nnoremap <Leader>n :NERDTreeFocus<CR>
           nnoremap <C-n> :NERDTree<CR>
           nnoremap <C-t> :NERDTreeToggle<CR>
           nnoremap <C-f> :NERDTreeFind<CR>
@@ -115,6 +133,7 @@ in {
                     nerd-commenter
                     nerd-tree
                     vim-nix
+                    vim-term
 	          ];
 
           opt = [ ];
