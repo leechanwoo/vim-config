@@ -2,9 +2,118 @@
   "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",
-      "args": ["--lsp"],
-      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
-      "filetypes": ["haskell", "lhaskell"]
+      "args": [
+        "--lsp"
+      ],
+      "rootPatterns": [
+        ".stack.yaml",
+        ".hie-bios",
+        "BUILD.bazel",
+        "cabal.config",
+        "package.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell"
+      ],
+      "initializationOptions": {
+        "haskell": {
+          "checkParents": "CheckOnSave",
+          "formatOnImportOn": true,
+          "hlintOn": true,
+          "diagnosticsOnChange": true,
+          "checkProject": true,
+          "liquidOn": false,
+          "maxCompletions": 40,
+          "formattingProvider": "stylish-haskell",
+          "plugin": {
+            "haddockComments": {
+              "globalOn": true
+            },
+            "retrie": {
+              "globalOn": true
+            },
+            "importLens": {
+              "codeActionsOn": true,
+              "codeLensOn": true
+            },
+            "ghcide-completions": {
+              "globalOn": true,
+              "config": {
+                "autoExtendOn": true,
+                "snippetsOn": true
+              }
+            },
+            "ghcide-type-lenses": {
+              "globalOn": true,
+              "config": {
+                "mode": "always"
+              }
+            },
+            "ghcide-code-actions-imports-exports": {
+              "globalOn": true
+            },
+            "ghcide-hover-and-symbols": {
+              "symbolsOn": true,
+              "hoverOn": true
+            },
+            "eval": {
+              "globalOn": true
+            },
+            "class": {
+              "globalOn": true
+            },
+            "pragmas": {
+              "completionOn": true,
+              "codeActionsOn": true
+            },
+            "splice": {
+              "globalOn": true
+            },
+            "tactics": {
+              "hoverOn": true,
+              "config": {
+                "auto_gas": 4,
+                "max_use_ctor_actions": 5,
+                "proofstate_styling": true,
+                "hole_severity": null,
+                "timeout_duration": 2
+              },
+              "codeActionsOn": true,
+              "codeLensOn": true
+            },
+            "callHierarchy": {
+              "globalOn": true
+            },
+            "refineImports": {
+              "codeActionsOn": true,
+              "codeLensOn": true
+            },
+            "hlint": {
+              "diagnosticsOn": true,
+              "config": {
+                "flags": []
+              },
+              "codeActionsOn": true
+            },
+            "ghcide-code-actions-type-signatures": {
+              "globalOn": true
+            },
+            "ghcide-code-actions-bindings": {
+              "globalOn": true
+            },
+            "moduleName": {
+              "globalOn": true
+            },
+            "ghcide-code-actions-fill-holes": {
+              "globalOn": true
+            }
+          }
+        }
+      }
     }
   }
 }
+
+
